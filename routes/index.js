@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', require('./swagger'));
-router.use('/todos', require('./todos'));
+router.use('/', require('./swagger'));
+// router.use('/recipe', require('./recipeRoutes'));
 
 module.exports = router;
