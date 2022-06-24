@@ -3,7 +3,6 @@ const router = express.Router();
 
 const recipeController = require('../controllers/recipeControllers');
 
-
 // GET all recipes
 router.get('/', recipeController.getRecipe);
 
