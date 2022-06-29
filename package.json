@@ -1,33 +1,33 @@
 {
-  "name": "cse341-recipeproject",
-  "version": "1.0.0",
-  "description": "Team recipe Project",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "swagger": "node ./swagger.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
-  },
-  "author": "Jonathan Wright, Zach Rochette, Cody Mickelsen, Emily Purser",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.18.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "nodemon": "^2.0.18",
-    "prettier": "^2.7.1",
-    "swagger-autogen": "^2.21.3"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.0",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "mongodb": "^4.7.0",
-    "mongoose": "^6.4.0",
-    "swagger-ui-express": "^4.4.0"
-  }
+    "name": "cse341-recipeproject",
+    "version": "1.0.0",
+    "description": "Team recipe Project",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js",
+        "dev": "nodemon app.js",
+        "swagger": "node ./swagger.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix",
+        "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
+    },
+    "author": "Jonathan Wright, Zach Rochette, Cody Mickelsen, Emily Purser",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^8.18.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "nodemon": "^2.0.18",
+        "prettier": "^2.7.1",
+        "swagger-autogen": "^2.21.3"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "mongodb": "^4.7.0",
+        "mongoose": "^6.4.0",
+        "swagger-ui-express": "^4.4.0"
+    }
 }

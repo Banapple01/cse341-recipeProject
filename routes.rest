@@ -1,1 +1,7 @@
 # test routes must be created!
+
+###
+DELETE http://localhost:8080/recipe/_id HTTP/1.1 
+
+###
+DELETE https://cse341-recipe-app.herokuapp.com/recipe/_id HTTP/1.1 
