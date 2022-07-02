@@ -4,6 +4,23 @@ const ObjectId = require('mongodb').ObjectId;
 
 // controller functions must be created!
 
+// Get all recipes
+async function getRecipe(req, res, next) {
+    try{
+        const result = await mongodb
+            .getDb()
+            .db('teamRecipePeeps')
+            .collection('recipes')
+            .find();
+        result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists);
+        })
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
 // delete a recipe
 const deleteRecipe = async (req, res) => {
     try {
@@ -24,4 +41,4 @@ const deleteRecipe = async (req, res) => {
 };
 
 // remember to add your function to the exports!
-module.exports = { deleteRecipe };
+module.exports = { getRecipe,  deleteRecipe };
