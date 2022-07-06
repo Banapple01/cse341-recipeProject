@@ -1,4 +1,4 @@
-// creating a recipe model to help create data for the create reipe function
+// Creating a recipe model for POST requests
 const mongoose = require('mongoose');
 
 // create schema and model
