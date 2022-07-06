@@ -7,13 +7,12 @@ const RecipeModel = require('../models/recipes');
 // controller functions must be created!
 
 // POST create recipe
-const createRecipe = async (req, res) => {
+const createRecipe = (req, res) => {
   try {
     //create new recipe
     const recipe = {
       name: req.body.name,
       email: req.body.email,
-      recipePicture: req.body.recipePicture,
       desc: req.body.desc,
       ingredients: req.body.ingredients
     };
