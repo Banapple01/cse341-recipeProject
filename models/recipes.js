@@ -1,0 +1,32 @@
+// creating a recipe model to help create data for the create reipe function
+const mongoose = require('mongoose');
+
+// create schema and model
+const RecipeSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    require: true
+  },
+  email: {
+    type: String,
+    require: true,
+    max: 50,
+    unique: true
+  },
+  recipePicture: {
+    type: String,
+    default: ''
+  },
+  desc: {
+    type: String,
+    require: true
+  },
+  ingredients: {
+    type: String,
+    require: true
+  }
+});
+
+const RecipeModel = mongoose.model('recipe', RecipeSchema);
+
+module.exports = RecipeModel;

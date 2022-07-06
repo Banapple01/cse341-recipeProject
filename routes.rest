@@ -1,1 +1,27 @@
 # test routes must be created!
+# Get all recipes
+GET http://localhost:8080/recipe
+###
+
+###
+// CREATE RECIPE
+POST http://localhost:8080 HTTP/1.1
+content-type:application/json
+
+{
+      "name": "zach",
+      "email": "zach@example.com",
+      "desc": "Good food and stuff",
+      "ingredients": "Salt, pepper, and stuff"
+}
+###
+
+###
+DELETE http://localhost:8080/recipe/_id HTTP/1.1 
+###
+#Get all recipes
+GET https://cse341-recipe-app.herokuapp.com/recipe
+###
+
+###
+DELETE https://cse341-recipe-app.herokuapp.com/recipe/_id HTTP/1.1 
