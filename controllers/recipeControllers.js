@@ -1,8 +1,26 @@
 // const { response } = require('express');
-const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const mongodb = require("../db/connect");
+const ObjectId = require("mongodb").ObjectId;
+const RecipeModel = require("../models/recipes");
 
-const RecipeModel = require('../models/recipes');
+// controller functions must be created!
+
+// Get all recipes
+async function getRecipe(req, res) {
+  try {
+    const result = await mongodb
+      .getDb()
+      .db("teamRecipePeeps")
+      .collection("recipes")
+      .find();
+    result.toArray().then((lists) => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(lists);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
 
 // controller functions must be created!
 
@@ -14,7 +32,7 @@ const createRecipe = (req, res) => {
       name: req.body.name,
       email: req.body.email,
       desc: req.body.desc,
-      ingredients: req.body.ingredients
+      ingredients: req.body.ingredients,
     };
 
     //Save new recipe and respond
@@ -23,7 +41,7 @@ const createRecipe = (req, res) => {
       res.json(result);
     });
   } catch (err) {
-    res.status(500).json(err || 'Could not create recipe');
+    res.status(500).json(err || "Could not create recipe");
   }
 };
 
@@ -31,16 +49,26 @@ const createRecipe = (req, res) => {
 const deleteRecipe = async (req, res) => {
   try {
     const id = new ObjectId(req.params.id);
-    const result = await mongodb.getDb().db().collection('recipes').deleteOne({ _id: id }, true);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection("recipes")
+      .deleteOne({ _id: id }, true);
     if (result.deletedCount > 0) {
       res.status(204).send();
     } else {
-      res.status(500).json(result.error || 'Something went wrong while deleting the recipe.');
+      res
+        .status(500)
+        .json(
+          result.error || "Something went wrong while deleting the recipe."
+        );
     }
   } catch (err) {
-    res.status(500).json(err || 'Some error occurred while deleting the recipe.');
+    res
+      .status(500)
+      .json(err || "Some error occurred while deleting the recipe.");
   }
 };
 
 // remember to add your function to the exports!
-module.exports = { deleteRecipe, createRecipe };
+module.exports = { getRecipe, deleteRecipe, createRecipe };
