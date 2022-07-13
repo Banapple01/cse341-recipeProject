@@ -1,4 +1,5 @@
 // const { response } = require('express');
+const { calculateObjectSize } = require('bson');
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
@@ -12,6 +13,22 @@ async function getRecipe(req, res, next) {
             .db('teamRecipePeeps')
             .collection('recipes')
             .find();
+        result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists);
+        })
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+async function getSingleRecipe(req, res, next) {
+    try { 
+        const userId = new ObjectId(req.params.id);
+        const result = await mongodb
+        .getDb
+        .db('teamRecipePeeps')
+        .collection('recipes')
+        .find({_id: userId});
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists);
@@ -41,4 +58,4 @@ const deleteRecipe = async (req, res) => {
 };
 
 // remember to add your function to the exports!
-module.exports = { getRecipe,  deleteRecipe };
+module.exports = { getRecipe, getSingleRecipe, deleteRecipe };
