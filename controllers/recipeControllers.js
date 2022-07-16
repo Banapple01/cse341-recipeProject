@@ -37,7 +37,7 @@ async function getSingleRecipe(req, res, next) {
 }
 
 // POST create recipe
-const createRecipe = (req, res) => {
+const createRecipe = async (req, res) => {
     try {
         //create new recipe
         const recipe = {
@@ -55,6 +55,16 @@ const createRecipe = (req, res) => {
             if (err) console.log(err);
             res.json(result);
         });
+
+        const response = await mongodb.getDb().db().collection('recipes').insertOne(recipe);
+        console.log(response);
+        if (response.acknowledged) {
+            res.status(201).json(response);
+        } else {
+            res.status(500).json(
+                response.error || 'Some error occurred while creating the recipe.'
+            );
+        }
     } catch (err) {
         res.status(500).json(err || 'Could not create recipe');
     }
