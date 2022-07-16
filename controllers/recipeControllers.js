@@ -44,7 +44,8 @@ const createRecipe = (req, res) => {
             name: req.body.name,
             email: req.body.email,
             desc: req.body.desc,
-            ingredients: req.body.ingredients
+            ingredients: req.body.ingredients,
+            enum: ['breakfast', 'lunch', 'dinner']
         };
 
         //Save new recipe and respond
@@ -59,25 +60,25 @@ const createRecipe = (req, res) => {
 
 // Update a Recipe
 async function updateRecipe(req, res) {
-  const id = new ObjectId(req.params.id);
-  const recipe = {
-    name: req.body.name,
-    email: req.body.email,
-    desc: req.body.desc,
-    ingredients: req.body.ingredients
-  };
-  try {
-    const result = await mongodb
-    .getDb()
-    .db("teamRecipePeeps")
-    .collection("recipes")
-    .replaceOnce({_id: id}, recipe);
-    res.status(200).send();
-  } catch (err) {
-    res.status(500).json(err);
-  }
+    const id = new ObjectId(req.params.id);
+    const recipe = {
+        name: req.body.name,
+        email: req.body.email,
+        desc: req.body.desc,
+        ingredients: req.body.ingredients,
+        enum: ['breakfast', 'lunch', 'dinner']
+    };
+    try {
+        const result = await mongodb
+            .getDb()
+            .db('teamRecipePeeps')
+            .collection('recipes')
+            .replaceOnce({ _id: id }, recipe);
+        res.status(200).send();
+    } catch (err) {
+        res.status(500).json(err);
+    }
 }
-
 
 // delete a recipe
 const deleteRecipe = async (req, res) => {
