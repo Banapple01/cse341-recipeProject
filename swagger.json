@@ -55,7 +55,13 @@
                 "ingredients": {
                   "example": "any"
                 },
-                "enum": {
+                "meal": {
+                  "example": "any"
+                },
+                "glutenFree": {
+                  "example": "any"
+                },
+                "cookTime": {
                   "example": "any"
                 }
               }
@@ -122,7 +128,13 @@
                 "ingredients": {
                   "example": "any"
                 },
-                "enum": {
+                "meal": {
+                  "example": "any"
+                },
+                "glutenFree": {
+                  "example": "any"
+                },
+                "cookTime": {
                   "example": "any"
                 }
               }

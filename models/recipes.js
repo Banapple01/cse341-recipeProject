@@ -21,7 +21,20 @@ const RecipeSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    enum: ['breakfast', 'lunch', 'dinner']
+    meal: {
+        type: String,
+        require: true,
+        enum: ['breakfast', 'lunch', 'dinner']
+    },
+    glutenFree: {
+        type: Boolean,
+        require: true
+    },
+    cookTime: {
+        type: String,
+        require: true,
+        enum: ['5', '10', '15', '20', '25', '30', '35', '40', '45']
+    }
 });
 
 const RecipeModel = mongoose.model('recipe', RecipeSchema);
