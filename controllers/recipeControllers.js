@@ -22,8 +22,6 @@ async function getRecipe(req, res) {
   }
 }
 
-// controller functions must be created!
-
 // POST create recipe
 const createRecipe = (req, res) => {
   try {
