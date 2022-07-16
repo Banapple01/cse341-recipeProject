@@ -45,7 +45,7 @@ const createRecipe = (req, res) => {
             email: req.body.email,
             desc: req.body.desc,
             ingredients: req.body.ingredients,
-            enum: ['breakfast', 'lunch', 'dinner']
+            enum: req.body.enum
         };
 
         //Save new recipe and respond
@@ -66,7 +66,7 @@ async function updateRecipe(req, res) {
         email: req.body.email,
         desc: req.body.desc,
         ingredients: req.body.ingredients,
-        enum: ['breakfast', 'lunch', 'dinner']
+        enum: req.body.enum
     };
     try {
         const result = await mongodb

@@ -54,6 +54,9 @@
                 },
                 "ingredients": {
                   "example": "any"
+                },
+                "enum": {
+                  "example": "any"
                 }
               }
             }
@@ -117,6 +120,9 @@
                   "example": "any"
                 },
                 "ingredients": {
+                  "example": "any"
+                },
+                "enum": {
                   "example": "any"
                 }
               }
