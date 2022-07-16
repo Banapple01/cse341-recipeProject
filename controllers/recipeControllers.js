@@ -23,10 +23,7 @@ async function getRecipe(req, res) {
 async function getSingleRecipe(req, res, next) {
     try {
         const userId = new ObjectId(req.params.id);
-        const result = await mongodb.getDb
-            .db('teamRecipePeeps')
-            .collection('recipes')
-            .find({ _id: userId });
+        const result = await mongodb.getDb.db().collection('recipes').find({ _id: userId });
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists[0]);
@@ -85,11 +82,15 @@ async function updateRecipe(req, res) {
     try {
         const result = await mongodb
             .getDb()
-            .db('teamRecipePeeps')
+            .db()
             .collection('recipes')
             .replaceOnce({ _id: id }, recipe);
         console.log(result);
-        res.status(200).send();
+        if (result.modifiedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json(result.error || 'Something went wrong with the update.');
+        }
     } catch (err) {
         res.status(500).json(err);
     }
