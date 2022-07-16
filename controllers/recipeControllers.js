@@ -20,11 +20,13 @@ async function getRecipe(req, res) {
 }
 
 // Get single recipe
-async function getSingleRecipe(req, res, next) {
+async function getSingleRecipe(req, res) {
+    console.log('get single recipe called');
     try {
         const userId = new ObjectId(req.params.id);
-        const result = await mongodb.getDb.db().collection('recipes').find({ _id: userId });
+        const result = await mongodb.getDb().db().collection('recipes').find({ _id: userId });
         result.toArray().then((lists) => {
+            console.log(lists);
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists[0]);
         });
@@ -69,22 +71,22 @@ const createRecipe = async (req, res) => {
 
 // Update a Recipe
 async function updateRecipe(req, res) {
-    const id = new ObjectId(req.params.id);
-    const recipe = {
-        name: req.body.name,
-        email: req.body.email,
-        desc: req.body.desc,
-        ingredients: req.body.ingredients,
-        meal: req.body.meal,
-        glutenFree: req.body.glutenFree,
-        cookTime: req.body.cookTime
-    };
     try {
+        const id = new ObjectId(req.params.id);
+        const recipe = {
+            name: req.body.name,
+            email: req.body.email,
+            desc: req.body.desc,
+            ingredients: req.body.ingredients,
+            meal: req.body.meal,
+            glutenFree: req.body.glutenFree,
+            cookTime: req.body.cookTime
+        };
         const result = await mongodb
             .getDb()
             .db()
             .collection('recipes')
-            .replaceOnce({ _id: id }, recipe);
+            .replaceOne({ _id: id }, recipe);
         console.log(result);
         if (result.modifiedCount > 0) {
             res.status(204).send();
