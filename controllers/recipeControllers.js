@@ -57,6 +57,28 @@ const createRecipe = (req, res) => {
     }
 };
 
+// Update a Recipe
+async function updateRecipe(req, res) {
+  const id = new ObjectId(req.params.id);
+  const recipe = {
+    name: req.body.name,
+    email: req.body.email,
+    desc: req.body.desc,
+    ingredients: req.body.ingredients
+  };
+  try {
+    const result = await mongodb
+    .getDb()
+    .db("teamRecipePeeps")
+    .collection("recipes")
+    .replaceOnce({_id: id}, recipe);
+    res.status(200).send();
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+
 // delete a recipe
 const deleteRecipe = async (req, res) => {
     try {
@@ -77,4 +99,4 @@ const deleteRecipe = async (req, res) => {
 };
 
 // remember to add your function to the exports!
-module.exports = { getRecipe, getSingleRecipe, deleteRecipe, createRecipe };
+module.exports = { getRecipe, getSingleRecipe, deleteRecipe, createRecipe, updateRecipe };
