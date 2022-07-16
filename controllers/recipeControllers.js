@@ -1,6 +1,7 @@
 // const { response } = require('express');
-const mongodb = require("../db/connect");
-const ObjectId = require("mongodb").ObjectId;
+const { calculateObjectSize } = require('bson');
+const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 const RecipeModel = require("../models/recipes");
 
 // controller functions must be created!
@@ -20,6 +21,24 @@ async function getRecipe(req, res) {
   } catch (err) {
     res.status(500).json(err);
   }
+}
+
+// Get single recipe
+async function getSingleRecipe(req, res, next) {
+    try { 
+        const userId = new ObjectId(req.params.id);
+        const result = await mongodb
+        .getDb
+        .db('teamRecipePeeps')
+        .collection('recipes')
+        .find({_id: userId});
+        result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists);
+        })
+    } catch (err) {
+        res.status(500).json(err);
+    }
 }
 
 // POST create recipe
@@ -69,4 +88,4 @@ const deleteRecipe = async (req, res) => {
 };
 
 // remember to add your function to the exports!
-module.exports = { getRecipe, deleteRecipe, createRecipe };
+module.exports = { getRecipe, getSingleRecipe, deleteRecipe, createRecipe };
